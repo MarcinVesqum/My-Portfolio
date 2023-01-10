@@ -88,7 +88,7 @@ const modalShow = ref(null)
   show modal
 */
   const modalData = reactive({
-    showModal: true,
+    showModal: false,
     titleModal: 'Success!',
     descModal: `
       Thank you with your interest in my person.
