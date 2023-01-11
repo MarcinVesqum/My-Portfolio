@@ -1,11 +1,27 @@
 <template>
     <header>
         <!-- Desctop -->
+        <div class="socials">
+            <div class="social">
+              <a href="#">
+              </a>
+            </div>
+            <div class="social">
+              <a href="#">
+              </a>
+            </div>
+            <div class="social">
+              <a href="#">
+              </a>
+            </div>
+          </div>
         <nav class="navigation" v-if="!activeMobile">
             <ul class="navigation__desctop">
                 <router-link active-class="active"  class="navigation__desctop__item" :to="{ name: 'home'}">
                     <span class="navigation__desctop__item--icon">
-                        <ion-icon name="home-outline"></ion-icon>
+                        <span class="material-symbols-outlined icon-desctop">
+                            home
+                        </span>
                     </span>
                     <span class="navigation__desctop__item--text">Home</span>
                 </router-link>
@@ -13,7 +29,9 @@
 
                 <router-link active-class="active"  class="navigation__desctop__item" :to="{ name: 'profile'}">
                     <span class="navigation__desctop__item--icon">
-                        <ion-icon name="finger-print-outline"></ion-icon>
+                        <span class="material-symbols-outlined icon-desctop">
+                            fingerprint
+                        </span>
                     </span>
                     <span class="navigation__desctop__item--text">About</span>
                 </router-link>
@@ -21,7 +39,9 @@
 
                 <router-link active-class="active"  class="navigation__desctop__item" :to="{ name: 'projects'}">
                     <span class="navigation__desctop__item--icon">
-                        <ion-icon name="laptop-outline"></ion-icon>
+                        <span class="material-symbols-outlined icon-desctop">
+                            web
+                        </span>
                     </span>
                     <span class="navigation__desctop__item--text">Projects</span>
                 </router-link>
@@ -29,7 +49,9 @@
 
                 <router-link active-class="active"  class="navigation__desctop__item"  :to="{ name: 'contact'}">
                     <span class="navigation__desctop__item--icon">
-                        <ion-icon name="mail-unread-outline"></ion-icon>
+                        <span class="material-symbols-outlined icon-desctop">
+                            mark_as_unread
+                        </span>
                     </span>
                     <span class="navigation__desctop__item--text">Contact</span>
                 </router-link>
@@ -37,7 +59,7 @@
             </ul>
         </nav>
         <!-- Mobile -->
-        <nav class="navigation__mobile" v-else-if="activeMobile">
+        <nav class="navigation__mobile" v-else>
             <button
             @click="toggleMenu" 
             class="navigation__mobile__burger" 
@@ -51,7 +73,9 @@
                 <ul v-if="activeBurger"  class="navigation__mobile__list">
                     <router-link @click="activeBurger = false" active-class="active-mobile"  class="navigation__mobile__list__item" :to="{ name: 'home'}">
                         <span class="navigation__mobile__list__item--icon">
-                            <ion-icon name="home-outline"></ion-icon>
+                            <span class="material-symbols-outlined icon-mobile">
+                                home
+                            </span>
                         </span>
                         <span class="navigation__mobile__list__item--text">Home</span>
                     </router-link>
@@ -59,7 +83,9 @@
     
                     <router-link @click="activeBurger = false" active-class="active-mobile"  class="navigation__mobile__list__item" :to="{ name: 'profile'}">
                         <span class="navigation__mobile__list__item--icon">
-                            <ion-icon name="finger-print-outline"></ion-icon>
+                            <span class="material-symbols-outlined icon-mobile">
+                                person
+                            </span>
                         </span>
                         <span class="navigation__mobile__list__item--text">About</span>
                     </router-link>
@@ -67,7 +93,9 @@
     
                     <router-link @click="activeBurger = false" active-class="active-mobile"  class="navigation__mobile__list__item" :to="{ name: 'projects'}">
                         <span class="navigation__mobile__list__item--icon">
-                            <ion-icon name="laptop-outline"></ion-icon>
+                            <span class="material-symbols-outlined icon-mobile">
+                                web
+                            </span>
                         </span>
                         <span class="navigation__mobile__list__item--text">Projects</span>
                     </router-link>
@@ -75,38 +103,47 @@
     
                     <router-link @click="activeBurger = false" active-class="active-mobile"  class="navigation__mobile__list__item"  :to="{ name: 'contact'}">
                         <span class="navigation__mobile__list__item--icon">
-                            <ion-icon name="mail-unread-outline"></ion-icon>
+                            <span class="material-symbols-outlined icon-mobile">
+                                mark_as_unread
+                            </span>
                         </span>
                         <span class="navigation__mobile__list__item--text">Contact</span>
                     </router-link>
                 </ul>
             </transition>
-            
+
         </nav>
     </header>
 </template>
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted } from 'vue'
 
-const activeMobile = ref(false)
+
+
+const activeMobile = ref(null)
+const windowWidth = ref(null)
 const activeBurger = ref(false)
 const toggleBar = ref(false)
 
 const toggleMenu = () => {
     toggleBar.value = !toggleBar.value
-    activeBurger.value = !activeBurger.value
+    activeBurger.value = false
 }
 const handleResize = () => {
-  
-  if (window.innerWidth <= 947) {
+    windowWidth.value = window.innerWidth
+  if (windowWidth.value <= 947) {
     activeMobile.value = true
+    return;
   } else {
     activeMobile.value = false
+    activeBurger.value = false
+    return;
   }
 
 }
 onMounted(() => {
     window.addEventListener('resize', handleResize)
+    handleResize();
 })
 
 // onUnmounted(() => {
@@ -139,6 +176,7 @@ onMounted(() => {
             width: 70px;
             height: 70px;
             z-index: 1;
+            
     
             &--link {
                 position: relative;
@@ -156,6 +194,11 @@ onMounted(() => {
                 transition: 0.5s;
                 color: var(--crl);
                 z-index: 100;
+                span {
+                    width: 50px;
+                    height: 50px;
+                    font-size: 2.5rem;
+                }
             }
             &--text {
                 position: absolute;

@@ -13,16 +13,14 @@ export const useProjectsStore = defineStore('projects', {
   }),
   actions: {
     init() {
-      
-
         this.getProjects()
     },
     async getProjects() {
 
-      onSnapshot(projectsColection, (querySnap) => {
+      await onSnapshot(projectsColection, (querySnap) => {
         let projects = []
         querySnap.forEach(doc => {
-          console.log(doc.title);
+          console.log(doc)
           let project = {
             id: doc.id,
             title: doc.data().title,
