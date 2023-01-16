@@ -20,7 +20,6 @@ export const useProjectsStore = defineStore('projects', {
       await onSnapshot(projectsColection, (querySnap) => {
         let projects = []
         querySnap.forEach(doc => {
-          console.log(doc)
           let project = {
             id: doc.id,
             title: doc.data().title,

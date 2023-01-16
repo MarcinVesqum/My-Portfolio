@@ -18,7 +18,7 @@
                  class="projects__item padding-15">
                     <CardComponent class="projects__item__inner" :project="project">
                         <ButtonComponent>
-                            <a class="project__btn button" href="#">View Demo</a>
+                            <a class="project__btn button" :href="project.url">View Demo</a>
                         </ButtonComponent>
                     </CardComponent>
                         
@@ -38,7 +38,6 @@ import { storeToRefs } from 'pinia'
 const storeProjects = useProjectsStore()
 const { projects } = storeToRefs(storeProjects)
 
-console.log(projects.value);
 </script>
 
 <style lang="scss" scoped>
