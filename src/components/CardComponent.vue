@@ -1,7 +1,7 @@
 <template>
     <div class="card shadow-dark">
         <div class="card__image">
-            <img  src="../assets/img/project2.jpg" :alt="project.alt">
+            <img   :src="getImage(project.img)" :alt="project.alt">
         </div>
         <div class="card__header">
             <div class="card__header__title padding-15">
@@ -20,12 +20,20 @@
     </div>
 </template>
 <script setup>
+import { onMounted } from "vue"
+
 const props = defineProps({
     project: {
         type: Object,
         required: true
     }
 })
+
+const getImage = (path) => {
+    const imageUrl = new URL(`/src/assets/projects/${path}`, import.meta.url)
+    return imageUrl
+}
+
 </script>
 
 <style lang="scss">
@@ -41,6 +49,8 @@ const props = defineProps({
     &__image {
         border-radius: 10px;
         img {
+            background-size: cover;
+            background-position:  center;
             width: 100%;
         }
     }
