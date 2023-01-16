@@ -1,7 +1,7 @@
 <template>
     <div class="card shadow-dark">
         <div class="card__image">
-            <img   :src="getImage(project.img)" :alt="project.alt">
+            <img :src="getImage(project.img)" :alt="project.alt">
         </div>
         <div class="card__header">
             <div class="card__header__title padding-15">

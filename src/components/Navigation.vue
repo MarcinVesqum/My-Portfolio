@@ -70,8 +70,8 @@
                 </span>
             </button>
             <transition name="burger">
-                <ul v-if="activeBurger"  class="navigation__mobile__list">
-                    <router-link @click="activeBurger = false" active-class="active-mobile"  class="navigation__mobile__list__item" :to="{ name: 'home'}">
+                <ul v-if="toggleBar"  class="navigation__mobile__list">
+                    <router-link @click="toggleBar = false" active-class="active-mobile"  class="navigation__mobile__list__item" :to="{ name: 'home'}">
                         <span class="navigation__mobile__list__item--icon">
                             <span class="material-symbols-outlined icon-mobile">
                                 home
@@ -81,7 +81,7 @@
                     </router-link>
     
     
-                    <router-link @click="activeBurger = false" active-class="active-mobile"  class="navigation__mobile__list__item" :to="{ name: 'profile'}">
+                    <router-link @click="toggleBar = false" active-class="active-mobile"  class="navigation__mobile__list__item" :to="{ name: 'profile'}">
                         <span class="navigation__mobile__list__item--icon">
                             <span class="material-symbols-outlined icon-mobile">
                                 person
@@ -91,7 +91,7 @@
                     </router-link>
     
     
-                    <router-link @click="activeBurger = false" active-class="active-mobile"  class="navigation__mobile__list__item" :to="{ name: 'projects'}">
+                    <router-link @click="toggleBar = false" active-class="active-mobile"  class="navigation__mobile__list__item" :to="{ name: 'projects'}">
                         <span class="navigation__mobile__list__item--icon">
                             <span class="material-symbols-outlined icon-mobile">
                                 web
@@ -101,7 +101,7 @@
                     </router-link>
     
     
-                    <router-link @click="activeBurger = false" active-class="active-mobile"  class="navigation__mobile__list__item"  :to="{ name: 'contact'}">
+                    <router-link @click="toggleBar = false" active-class="active-mobile"  class="navigation__mobile__list__item"  :to="{ name: 'contact'}">
                         <span class="navigation__mobile__list__item--icon">
                             <span class="material-symbols-outlined icon-mobile">
                                 mark_as_unread
@@ -127,16 +127,16 @@ const toggleBar = ref(false)
 
 const toggleMenu = () => {
     toggleBar.value = !toggleBar.value
-    activeBurger.value = false
+    activeBurger.value = true
 }
 const handleResize = () => {
     windowWidth.value = window.innerWidth
   if (windowWidth.value <= 947) {
     activeMobile.value = true
+    activeBurger.value = false
     return;
   } else {
     activeMobile.value = false
-    activeBurger.value = false
     return;
   }
 
@@ -145,13 +145,6 @@ onMounted(() => {
     window.addEventListener('resize', handleResize)
     handleResize();
 })
-
-// onUnmounted(() => {
-//     window.removeEventListener('resize', handleResize)
-// })
-
-
-
 
 </script>
 <style lang="scss" scoped>
