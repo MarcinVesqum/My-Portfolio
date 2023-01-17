@@ -37,24 +37,24 @@
                         <form ref="form" class="col-12" @submit.prevent="sendMail">
                             <div class="contact__form__item padding-15">
                                 <div class="contact__form__group">
-                                    <input :value="inputFieldReset"  class="contact__form__controle" type="text"  placeholder="Number">
+                                    <input :value="inputFieldRest" name="user_company" class="contact__form__controle" type="text"  placeholder="Name Company">
                                 </div>
                             </div>
                             <div class="contact__form__item padding-15">
                                 <div class="contact__form__group">
-                                    <input required :value="inputFieldReset"  class="contact__form__controle" type="email"  placeholder="Email">
+                                    <input required name="user_email" :value="inputFieldRest"  class="contact__form__controle" type="email"  placeholder="Email">
                                 </div>
                             </div>
                             <div class="contact__form__item padding-15">
                                 <div class="contact__form__group">
-                                    <input required :value="inputFieldReset"  class="contact__form__controle" type="text"  placeholder="Subject">
+                                    <input required name="user_name" :value="inputFieldRest"  class="contact__form__controle" type="text"  placeholder="Subject">
                                 </div>
                         
                             </div>
                             
                             <div class="contact__form__item padding-15">
                                 <div class="contact__form__group">
-                                    <textarea required :value="inputFieldReset" class="contact__form__controle"  placeholder="Message"></textarea>
+                                    <textarea required name="message" :value="inputFieldRest" class="contact__form__controle"  placeholder="Message"></textarea>
                                 </div>
                             </div>
                             <div class="contact__form__item padding-15">

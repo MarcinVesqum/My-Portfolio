@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ContactView from '../views/ContactView.vue'
 
 
 const routes = [
@@ -21,7 +22,7 @@ const routes = [
   {
     path: '/contact',
     name: 'contact',
-    component: () => import('../views/ContactView.vue')
+    component: ContactView
   }
 ]
 
